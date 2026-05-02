@@ -1,0 +1,16 @@
+services:
+  my-app:
+    image: wiqipa88/express_app:latest
+    ports:
+      - "3000:3000"
+    container_name: my_app
+
+  watchtower:
+    image: containrrr/watchtower
+    environment:
+      - WATCHTOWER_POLL_INTERVAL=60
+      - WATCHTOWER_CLEANUP=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: watchtower
+    command: --api-version 1.54
